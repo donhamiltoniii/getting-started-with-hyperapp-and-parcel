@@ -563,7 +563,7 @@ var _debouncePromise = require('debounce-promise');
 
 var _debouncePromise2 = _interopRequireDefault(_debouncePromise);
 
-require('./src/css/style.sass');
+require('./src/css/style.css');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -596,53 +596,81 @@ var getUserData = (0, _debouncePromise2.default)(getUserDataFn, 700);
 
 var view = function view(state, actions) {
 	return (0, _hyperapp.h)(
-		'main',
-		null,
+		'div',
+		{ className: 'container' },
 		(0, _hyperapp.h)(
-			'div',
+			'header',
 			null,
-			'Search github users:'
+			(0, _hyperapp.h)(
+				'h1',
+				null,
+				'Github Friend Finder'
+			)
 		),
-		(0, _hyperapp.h)('input', {
-			type: 'text',
-			className: 'searchInput',
-			value: state.username,
-			oninput: function oninput(e) {
-				return actions.updateUsername(e.target.value);
-			}
-		}),
-		(0, _hyperapp.h)('br', null),
 		(0, _hyperapp.h)(
-			'div',
-			{ className: 'userCard' },
-			state.userData ? (0, _hyperapp.h)(
+			'main',
+			null,
+			(0, _hyperapp.h)(
 				'div',
 				null,
-				(0, _hyperapp.h)('img', {
-					className: 'userCard__img',
-					src: state.userData.avatar_url
-				}),
-				(0, _hyperapp.h)(
+				'Search github users:'
+			),
+			(0, _hyperapp.h)('input', {
+				type: 'text',
+				className: 'searchInput',
+				value: state.username,
+				oninput: function oninput(e) {
+					return actions.updateUsername(e.target.value);
+				}
+			}),
+			(0, _hyperapp.h)('br', null),
+			(0, _hyperapp.h)(
+				'div',
+				{ className: 'userCard' },
+				state.userData ? (0, _hyperapp.h)(
 					'div',
-					{ className: 'userCard__name' },
-					state.userData.name || 'this field is empty'
-				),
-				(0, _hyperapp.h)(
+					null,
+					(0, _hyperapp.h)('img', {
+						className: 'userCard__img',
+						src: state.userData.avatar_url
+					}),
+					(0, _hyperapp.h)(
+						'div',
+						{ className: 'userCard__name' },
+						state.userData.name || 'this field is empty'
+					),
+					(0, _hyperapp.h)(
+						'div',
+						{ className: 'userCard__location' },
+						state.userData.location || 'this field is empty'
+					)
+				) : (0, _hyperapp.h)(
 					'div',
-					{ className: 'userCard__location' },
-					state.userData.location || 'this field is empty'
+					null,
+					'Search away'
 				)
-			) : (0, _hyperapp.h)(
-				'div',
+			)
+		),
+		(0, _hyperapp.h)(
+			'footer',
+			null,
+			(0, _hyperapp.h)(
+				'h6',
 				null,
-				'Search away'
+				'Inspired by:',
+				' ',
+				(0, _hyperapp.h)(
+					'a',
+					{ href: 'https://blog.daftcode.pl/hyperapp-parcel-71823bd93f1c' },
+					'This wonderful tutorial'
+				)
 			)
 		)
 	);
 };
 
 (0, _hyperapp.app)(state, actions, view, document.body);
-},{"hyperapp":4,"debounce-promise":5,"./src/css/style.sass":3}],8:[function(require,module,exports) {
+},{"hyperapp":4,"debounce-promise":5,"./src/css/style.css":3}],8:[function(require,module,exports) {
 
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -672,7 +700,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '49984' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51971' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
