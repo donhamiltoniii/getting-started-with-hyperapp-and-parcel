@@ -30,7 +30,7 @@ const view = (state, actions) => (
 			<h1>Github Friend Finder</h1>
 		</header>
 		<main>
-			<h2>Search github users:</h2>
+			<h2>Search Github Users:</h2>
 			<input
 				type="text"
 				className="searchInput"
@@ -38,22 +38,25 @@ const view = (state, actions) => (
 				oninput={e => actions.updateUsername(e.target.value)}
 			/>
 			<article className="userCard">
-				{/* {state.userData ? ( */}
-				<section>
-					<img
-						className="userCard__img"
-						src={state.userData.avatar_url || defaultAvatar}
-					/>
-					<h3 className="userCard__name">
-						{state.userData.name || `this field is empty`}
-					</h3>
-					<h4 className="userCard__location">
-						{state.userData.location || `this field is empty`}
-					</h4>
-				</section>
-				{/* ) : (
-					<section>Search away</section>
-				)} */}
+				<img
+					className="userCard__img"
+					src={state.userData.avatar_url || defaultAvatar}
+				/>
+				<h3 className="userCard__name">
+					{!(
+						Object.keys(state.userData).length === 0 &&
+						state.userData.constructor === Object
+					) ? (
+						<a href={state.userData.html_url}>
+							{state.userData.name}
+						</a>
+					) : (
+						`this field is empty`
+					)}
+				</h3>
+				<h4 className="userCard__location">
+					{state.userData.location || `this field is empty`}
+				</h4>
 			</article>
 		</main>
 		<footer>

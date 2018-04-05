@@ -77,7 +77,7 @@ parcelRequire = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({4:[function(require,module,exports) {
+})({7:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -405,7 +405,7 @@ function app(state, actions, view, container) {
     return element;
   }
 }
-},{}],5:[function(require,module,exports) {
+},{}],8:[function(require,module,exports) {
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -487,7 +487,7 @@ function defer() {
   return deferred;
 }
 //# sourceMappingURL=index.js.map
-},{}],7:[function(require,module,exports) {
+},{}],10:[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -517,7 +517,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],6:[function(require,module,exports) {
+},{}],9:[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -548,13 +548,13 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":7}],3:[function(require,module,exports) {
+},{"./bundle-url":10}],4:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":6}],11:[function(require,module,exports) {
+},{"_css_loader":9}],5:[function(require,module,exports) {
 module.exports="/default-avatar.5ec53794.jpg";
 },{}],2:[function(require,module,exports) {
 'use strict';
@@ -619,7 +619,7 @@ var view = function view(state, actions) {
 			(0, _hyperapp.h)(
 				'h2',
 				null,
-				'Search github users:'
+				'Search Github Users:'
 			),
 			(0, _hyperapp.h)('input', {
 				type: 'text',
@@ -632,23 +632,23 @@ var view = function view(state, actions) {
 			(0, _hyperapp.h)(
 				'article',
 				{ className: 'userCard' },
+				(0, _hyperapp.h)('img', {
+					className: 'userCard__img',
+					src: state.userData.avatar_url || _defaultAvatar2.default
+				}),
 				(0, _hyperapp.h)(
-					'section',
-					null,
-					(0, _hyperapp.h)('img', {
-						className: 'userCard__img',
-						src: state.userData.avatar_url || _defaultAvatar2.default
-					}),
-					(0, _hyperapp.h)(
-						'h3',
-						{ className: 'userCard__name' },
-						state.userData.name || 'this field is empty'
-					),
-					(0, _hyperapp.h)(
-						'h4',
-						{ className: 'userCard__location' },
-						state.userData.location || 'this field is empty'
-					)
+					'h3',
+					{ className: 'userCard__name' },
+					!(Object.keys(state.userData).length === 0 && state.userData.constructor === Object) ? (0, _hyperapp.h)(
+						'a',
+						{ href: state.userData.html_url },
+						state.userData.name
+					) : 'this field is empty'
+				),
+				(0, _hyperapp.h)(
+					'h4',
+					{ className: 'userCard__location' },
+					state.userData.location || 'this field is empty'
 				)
 			)
 		),
@@ -671,7 +671,7 @@ var view = function view(state, actions) {
 };
 
 (0, _hyperapp.app)(state, actions, view, document.body);
-},{"hyperapp":4,"debounce-promise":5,"./src/css/style.css":3,"./src/img/default-avatar.jpg":11}],8:[function(require,module,exports) {
+},{"hyperapp":7,"debounce-promise":8,"./src/css/style.css":4,"./src/img/default-avatar.jpg":5}],13:[function(require,module,exports) {
 
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -701,7 +701,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '55580' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59275' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -840,5 +840,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[8,2])
+},{}]},{},[13,2])
 //# sourceMappingURL=/getting-started-with-hyperapp-and-parcel.94b8fd86.map
