@@ -1,7 +1,11 @@
 import { h, app } from 'hyperapp'
 import debounce from 'debounce-promise'
-import './src/css/style.css'
-import defaultAvatar from './src/img/default-avatar.jpg'
+
+import { Header } from './src/app/Header'
+import { Footer } from './src/app/Footer'
+
+import './public/css/style.css'
+import defaultAvatar from './public/img/default-avatar.jpg'
 
 const state = {
 	username: '',
@@ -26,9 +30,7 @@ const getUserData = debounce(getUserDataFn, 700)
 
 const view = (state, actions) => (
 	<div className="container">
-		<header>
-			<h1>Github Friend Finder</h1>
-		</header>
+		<Header />
 		<main>
 			<div className="searchBar">
 				<h2>Search Github Users:</h2>
@@ -61,14 +63,7 @@ const view = (state, actions) => (
 				</h4>
 			</article>
 		</main>
-		<footer>
-			<h6>
-				Inspired by:{' '}
-				<a href="https://blog.daftcode.pl/hyperapp-parcel-71823bd93f1c">
-					This wonderful tutorial
-				</a>
-			</h6>
-		</footer>
+		<Footer />
 	</div>
 )
 

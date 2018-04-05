@@ -77,7 +77,7 @@ parcelRequire = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({5:[function(require,module,exports) {
+})({6:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -405,7 +405,7 @@ function app(state, actions, view, container) {
     return element;
   }
 }
-},{}],6:[function(require,module,exports) {
+},{}],7:[function(require,module,exports) {
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -487,7 +487,55 @@ function defer() {
   return deferred;
 }
 //# sourceMappingURL=index.js.map
-},{}],8:[function(require,module,exports) {
+},{}],5:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.Header = undefined;
+
+var _hyperapp = require('hyperapp');
+
+var Header = exports.Header = function Header() {
+	return (0, _hyperapp.h)(
+		'header',
+		null,
+		(0, _hyperapp.h)(
+			'h1',
+			null,
+			'Github Friend Finder'
+		)
+	);
+};
+},{"hyperapp":6}],16:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.Footer = undefined;
+
+var _hyperapp = require('hyperapp');
+
+var Footer = exports.Footer = function Footer() {
+	return (0, _hyperapp.h)(
+		'footer',
+		null,
+		(0, _hyperapp.h)(
+			'h6',
+			null,
+			'Inspired by:',
+			' ',
+			(0, _hyperapp.h)(
+				'a',
+				{ href: 'https://blog.daftcode.pl/hyperapp-parcel-71823bd93f1c' },
+				'This wonderful tutorial'
+			)
+		)
+	);
+};
+},{"hyperapp":6}],9:[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -517,7 +565,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],7:[function(require,module,exports) {
+},{}],8:[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -548,14 +596,14 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":8}],3:[function(require,module,exports) {
+},{"./bundle-url":9}],3:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":7}],4:[function(require,module,exports) {
-module.exports="/default-avatar.5ec53794.jpg";
+},{"_css_loader":8}],4:[function(require,module,exports) {
+module.exports="/default-avatar.3ede97bb.jpg";
 },{}],2:[function(require,module,exports) {
 'use strict';
 
@@ -565,9 +613,13 @@ var _debouncePromise = require('debounce-promise');
 
 var _debouncePromise2 = _interopRequireDefault(_debouncePromise);
 
-require('./src/css/style.css');
+var _Header = require('./src/app/Header');
 
-var _defaultAvatar = require('./src/img/default-avatar.jpg');
+var _Footer = require('./src/app/Footer');
+
+require('./public/css/style.css');
+
+var _defaultAvatar = require('./public/img/default-avatar.jpg');
 
 var _defaultAvatar2 = _interopRequireDefault(_defaultAvatar);
 
@@ -604,15 +656,7 @@ var view = function view(state, actions) {
 	return (0, _hyperapp.h)(
 		'div',
 		{ className: 'container' },
-		(0, _hyperapp.h)(
-			'header',
-			null,
-			(0, _hyperapp.h)(
-				'h1',
-				null,
-				'Github Friend Finder'
-			)
-		),
+		(0, _hyperapp.h)(_Header.Header, null),
 		(0, _hyperapp.h)(
 			'main',
 			null,
@@ -656,26 +700,12 @@ var view = function view(state, actions) {
 				)
 			)
 		),
-		(0, _hyperapp.h)(
-			'footer',
-			null,
-			(0, _hyperapp.h)(
-				'h6',
-				null,
-				'Inspired by:',
-				' ',
-				(0, _hyperapp.h)(
-					'a',
-					{ href: 'https://blog.daftcode.pl/hyperapp-parcel-71823bd93f1c' },
-					'This wonderful tutorial'
-				)
-			)
-		)
+		(0, _hyperapp.h)(_Footer.Footer, null)
 	);
 };
 
 (0, _hyperapp.app)(state, actions, view, document.body);
-},{"hyperapp":5,"debounce-promise":6,"./src/css/style.css":3,"./src/img/default-avatar.jpg":4}],9:[function(require,module,exports) {
+},{"hyperapp":6,"debounce-promise":7,"./src/app/Header":5,"./src/app/Footer":16,"./public/css/style.css":3,"./public/img/default-avatar.jpg":4}],15:[function(require,module,exports) {
 
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -705,7 +735,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50485' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51418' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -844,5 +874,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[9,2])
+},{}]},{},[15,2])
 //# sourceMappingURL=/getting-started-with-hyperapp-and-parcel.94b8fd86.map
