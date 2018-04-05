@@ -8,6 +8,8 @@ html {
 	font: 20px/1.618 sans-serif;
 }
 
+a {
+}
 footer {
 	justify-content: center;
 }
@@ -23,10 +25,22 @@ main {
 	align-items: center;
 	display: flex;
 }
-
+header h1 {
+	font-size: 0.9rem;
+}
+input {
+	border: 1px solid #ddd;
+	border-radius: 0.5em;
+	font-size: 1rem;
+	padding: 0.5em 1em;
+}
+input:focus {
+	outline: none;
+}
 main {
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
+	padding-top: 2rem;
 }
 
 .container {
@@ -36,4 +50,19 @@ main {
 	max-width: 1000px;
 	min-height: 100vh;
 	padding: 0 1rem;
+}
+
+.userCard {
+	border: 1px solid #ddd;
+	margin: 1rem;
+	padding: 1rem;
+}
+.userCard h3 {
+	font-size: 0.8em;
+}
+.userCard h4 {
+	font-size: 0.7em;
+}
+.userCard img {
+	max-width: 10rem;
 }

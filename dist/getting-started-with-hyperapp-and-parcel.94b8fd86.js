@@ -554,7 +554,9 @@ module.exports = reloadCSS;
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":6}],2:[function(require,module,exports) {
+},{"_css_loader":6}],11:[function(require,module,exports) {
+module.exports="/default-avatar.5ec53794.jpg";
+},{}],2:[function(require,module,exports) {
 'use strict';
 
 var _hyperapp = require('hyperapp');
@@ -565,11 +567,15 @@ var _debouncePromise2 = _interopRequireDefault(_debouncePromise);
 
 require('./src/css/style.css');
 
+var _defaultAvatar = require('./src/img/default-avatar.jpg');
+
+var _defaultAvatar2 = _interopRequireDefault(_defaultAvatar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var state = {
 	username: '',
-	userData: null
+	userData: {}
 };
 
 var actions = {
@@ -611,7 +617,7 @@ var view = function view(state, actions) {
 			'main',
 			null,
 			(0, _hyperapp.h)(
-				'div',
+				'h2',
 				null,
 				'Search github users:'
 			),
@@ -623,31 +629,26 @@ var view = function view(state, actions) {
 					return actions.updateUsername(e.target.value);
 				}
 			}),
-			(0, _hyperapp.h)('br', null),
 			(0, _hyperapp.h)(
-				'div',
+				'article',
 				{ className: 'userCard' },
-				state.userData ? (0, _hyperapp.h)(
-					'div',
+				(0, _hyperapp.h)(
+					'section',
 					null,
 					(0, _hyperapp.h)('img', {
 						className: 'userCard__img',
-						src: state.userData.avatar_url
+						src: state.userData.avatar_url || _defaultAvatar2.default
 					}),
 					(0, _hyperapp.h)(
-						'div',
+						'h3',
 						{ className: 'userCard__name' },
 						state.userData.name || 'this field is empty'
 					),
 					(0, _hyperapp.h)(
-						'div',
+						'h4',
 						{ className: 'userCard__location' },
 						state.userData.location || 'this field is empty'
 					)
-				) : (0, _hyperapp.h)(
-					'div',
-					null,
-					'Search away'
 				)
 			)
 		),
@@ -670,7 +671,7 @@ var view = function view(state, actions) {
 };
 
 (0, _hyperapp.app)(state, actions, view, document.body);
-},{"hyperapp":4,"debounce-promise":5,"./src/css/style.css":3}],8:[function(require,module,exports) {
+},{"hyperapp":4,"debounce-promise":5,"./src/css/style.css":3,"./src/img/default-avatar.jpg":11}],8:[function(require,module,exports) {
 
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -700,7 +701,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51971' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '55580' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

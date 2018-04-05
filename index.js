@@ -1,10 +1,11 @@
 import { h, app } from 'hyperapp'
 import debounce from 'debounce-promise'
 import './src/css/style.css'
+import defaultAvatar from './src/img/default-avatar.jpg'
 
 const state = {
 	username: '',
-	userData: null,
+	userData: {},
 }
 
 const actions = {
@@ -29,32 +30,31 @@ const view = (state, actions) => (
 			<h1>Github Friend Finder</h1>
 		</header>
 		<main>
-			<div>Search github users:</div>
+			<h2>Search github users:</h2>
 			<input
 				type="text"
 				className="searchInput"
 				value={state.username}
 				oninput={e => actions.updateUsername(e.target.value)}
 			/>
-			<br />
-			<div className="userCard">
-				{state.userData ? (
-					<div>
-						<img
-							className="userCard__img"
-							src={state.userData.avatar_url}
-						/>
-						<div className="userCard__name">
-							{state.userData.name || `this field is empty`}
-						</div>
-						<div className="userCard__location">
-							{state.userData.location || `this field is empty`}
-						</div>
-					</div>
-				) : (
-					<div>Search away</div>
-				)}
-			</div>
+			<article className="userCard">
+				{/* {state.userData ? ( */}
+				<section>
+					<img
+						className="userCard__img"
+						src={state.userData.avatar_url || defaultAvatar}
+					/>
+					<h3 className="userCard__name">
+						{state.userData.name || `this field is empty`}
+					</h3>
+					<h4 className="userCard__location">
+						{state.userData.location || `this field is empty`}
+					</h4>
+				</section>
+				{/* ) : (
+					<section>Search away</section>
+				)} */}
+			</article>
 		</main>
 		<footer>
 			<h6>
