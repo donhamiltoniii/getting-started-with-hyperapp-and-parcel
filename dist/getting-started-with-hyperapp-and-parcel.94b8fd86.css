@@ -50,9 +50,6 @@ main {
 	align-items: center;
 	display: flex;
 }
-h2 {
-	align-self: flex-start;
-}
 header h1 {
 	font-size: 0.9rem;
 }
@@ -79,6 +76,13 @@ main {
 	min-height: 100vh;
 }
 
+.searchBar {
+	align-self: flex-start;
+	display: flex;
+}
+.searchBar h2 {
+	margin-right: 1rem;
+}
 .userCard {
 	border: 1px solid var(--mid);
 	border-radius: 0.5em;
