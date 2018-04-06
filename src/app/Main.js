@@ -10,10 +10,7 @@ const Main = () => (state, actions) => (
 				src={state.userData.avatar_url || defaultAvatar}
 			/>
 			<h3 className="userCard__name">
-				{!(
-					Object.keys(state.userData).length === 0 &&
-					state.userData.constructor === Object
-				) ? (
+				{Object.keys(state.userData).length > 0 ? (
 					<a href={state.userData.html_url}>
 						{state.userData.name || `this field is empty`}
 					</a>

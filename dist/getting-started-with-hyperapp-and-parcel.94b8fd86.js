@@ -496,28 +496,30 @@ Object.defineProperty(exports, "__esModule", {
 
 var _hyperapp = require("hyperapp");
 
-var SearchBar = function SearchBar(state, actions) {
-	return (0, _hyperapp.h)(
-		"div",
-		{ className: "searchBar" },
-		(0, _hyperapp.h)(
-			"h2",
-			null,
-			"Search Github Users:"
-		),
-		(0, _hyperapp.h)("input", {
-			type: "text",
-			className: "searchInput",
-			value: state.username,
-			oninput: function oninput(e) {
-				return actions.updateUsername(e.target.value);
-			}
-		})
-	);
+var SearchBar = function SearchBar() {
+	return function (state, actions) {
+		return (0, _hyperapp.h)(
+			"div",
+			{ className: "searchBar" },
+			(0, _hyperapp.h)(
+				"h2",
+				null,
+				"Search Github Users:"
+			),
+			(0, _hyperapp.h)("input", {
+				type: "text",
+				className: "searchInput",
+				value: state.username,
+				oninput: function oninput(e) {
+					return actions.updateUsername(e.target.value);
+				}
+			})
+		);
+	};
 };
 
 exports.default = SearchBar;
-},{"hyperapp":7}],6:[function(require,module,exports) {
+},{"hyperapp":7}],4:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -546,7 +548,7 @@ var Header = function Header(state, actions) {
 };
 
 exports.default = Header;
-},{"hyperapp":7,"../components/SearchBar":11}],4:[function(require,module,exports) {
+},{"hyperapp":7,"../components/SearchBar":11}],5:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -576,7 +578,7 @@ var Footer = function Footer() {
 exports.default = Footer;
 },{"hyperapp":7}],10:[function(require,module,exports) {
 module.exports="/default-avatar.3ede97bb.jpg";
-},{}],5:[function(require,module,exports) {
+},{}],6:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -606,7 +608,7 @@ var Main = function Main() {
 				(0, _hyperapp.h)(
 					'h3',
 					{ className: 'userCard__name' },
-					!(Object.keys(state.userData).length === 0 && state.userData.constructor === Object) ? (0, _hyperapp.h)(
+					Object.keys(state.userData).length > 0 ? (0, _hyperapp.h)(
 						'a',
 						{ href: state.userData.html_url },
 						state.userData.name || 'this field is empty'
@@ -753,7 +755,7 @@ var view = function view(state, actions) {
 };
 
 (0, _hyperapp.app)(state, actions, view, document.body);
-},{"hyperapp":7,"debounce-promise":8,"./src/app/Header":6,"./src/app/Footer":4,"./src/app/Main":5,"./public/css/style.css":3}],13:[function(require,module,exports) {
+},{"hyperapp":7,"debounce-promise":8,"./src/app/Header":4,"./src/app/Footer":5,"./src/app/Main":6,"./public/css/style.css":3}],13:[function(require,module,exports) {
 
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -783,7 +785,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50071' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51306' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
