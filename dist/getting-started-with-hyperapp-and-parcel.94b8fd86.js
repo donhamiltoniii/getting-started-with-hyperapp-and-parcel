@@ -77,7 +77,7 @@ parcelRequire = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({6:[function(require,module,exports) {
+})({7:[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -405,7 +405,7 @@ function app(state, actions, view, container) {
     return element;
   }
 }
-},{}],7:[function(require,module,exports) {
+},{}],8:[function(require,module,exports) {
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -487,17 +487,52 @@ function defer() {
   return deferred;
 }
 //# sourceMappingURL=index.js.map
-},{}],5:[function(require,module,exports) {
+},{}],11:[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _hyperapp = require("hyperapp");
+
+var SearchBar = function SearchBar(state, actions) {
+	return (0, _hyperapp.h)(
+		"div",
+		{ className: "searchBar" },
+		(0, _hyperapp.h)(
+			"h2",
+			null,
+			"Search Github Users:"
+		),
+		(0, _hyperapp.h)("input", {
+			type: "text",
+			className: "searchInput",
+			value: state.username,
+			oninput: function oninput(e) {
+				return actions.updateUsername(e.target.value);
+			}
+		})
+	);
+};
+
+exports.default = SearchBar;
+},{"hyperapp":7}],6:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.Header = undefined;
 
 var _hyperapp = require('hyperapp');
 
-var Header = exports.Header = function Header() {
+var _SearchBar = require('../components/SearchBar');
+
+var _SearchBar2 = _interopRequireDefault(_SearchBar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Header = function Header(state, actions) {
 	return (0, _hyperapp.h)(
 		'header',
 		null,
@@ -505,20 +540,22 @@ var Header = exports.Header = function Header() {
 			'h1',
 			null,
 			'Github Friend Finder'
-		)
+		),
+		(0, _hyperapp.h)(_SearchBar2.default, { state: state, actions: actions })
 	);
 };
-},{"hyperapp":6}],16:[function(require,module,exports) {
+
+exports.default = Header;
+},{"hyperapp":7,"../components/SearchBar":11}],4:[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.Footer = undefined;
 
 var _hyperapp = require('hyperapp');
 
-var Footer = exports.Footer = function Footer() {
+var Footer = function Footer() {
 	return (0, _hyperapp.h)(
 		'footer',
 		null,
@@ -535,7 +572,58 @@ var Footer = exports.Footer = function Footer() {
 		)
 	);
 };
-},{"hyperapp":6}],9:[function(require,module,exports) {
+
+exports.default = Footer;
+},{"hyperapp":7}],10:[function(require,module,exports) {
+module.exports="/default-avatar.3ede97bb.jpg";
+},{}],5:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _hyperapp = require('hyperapp');
+
+var _defaultAvatar = require('../../public/img/default-avatar.jpg');
+
+var _defaultAvatar2 = _interopRequireDefault(_defaultAvatar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Main = function Main() {
+	return function (state, actions) {
+		return (0, _hyperapp.h)(
+			'main',
+			null,
+			(0, _hyperapp.h)(
+				'article',
+				{ className: 'userCard' },
+				(0, _hyperapp.h)('img', {
+					className: 'userCard__img',
+					src: state.userData.avatar_url || _defaultAvatar2.default
+				}),
+				(0, _hyperapp.h)(
+					'h3',
+					{ className: 'userCard__name' },
+					!(Object.keys(state.userData).length === 0 && state.userData.constructor === Object) ? (0, _hyperapp.h)(
+						'a',
+						{ href: state.userData.html_url },
+						state.userData.name || 'this field is empty'
+					) : 'this field is empty'
+				),
+				(0, _hyperapp.h)(
+					'h4',
+					{ className: 'userCard__location' },
+					state.userData.location || 'this field is empty'
+				)
+			)
+		);
+	};
+};
+
+exports.default = Main;
+},{"hyperapp":7,"../../public/img/default-avatar.jpg":10}],12:[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -565,7 +653,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],8:[function(require,module,exports) {
+},{}],9:[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -596,15 +684,13 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":9}],3:[function(require,module,exports) {
+},{"./bundle-url":12}],3:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":8}],4:[function(require,module,exports) {
-module.exports="/default-avatar.3ede97bb.jpg";
-},{}],2:[function(require,module,exports) {
+},{"_css_loader":9}],2:[function(require,module,exports) {
 'use strict';
 
 var _hyperapp = require('hyperapp');
@@ -615,13 +701,17 @@ var _debouncePromise2 = _interopRequireDefault(_debouncePromise);
 
 var _Header = require('./src/app/Header');
 
+var _Header2 = _interopRequireDefault(_Header);
+
 var _Footer = require('./src/app/Footer');
 
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _Main = require('./src/app/Main');
+
+var _Main2 = _interopRequireDefault(_Main);
+
 require('./public/css/style.css');
-
-var _defaultAvatar = require('./public/img/default-avatar.jpg');
-
-var _defaultAvatar2 = _interopRequireDefault(_defaultAvatar);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -656,56 +746,14 @@ var view = function view(state, actions) {
 	return (0, _hyperapp.h)(
 		'div',
 		{ className: 'container' },
-		(0, _hyperapp.h)(_Header.Header, null),
-		(0, _hyperapp.h)(
-			'main',
-			null,
-			(0, _hyperapp.h)(
-				'div',
-				{ className: 'searchBar' },
-				(0, _hyperapp.h)(
-					'h2',
-					null,
-					'Search Github Users:'
-				),
-				(0, _hyperapp.h)('input', {
-					type: 'text',
-					className: 'searchInput',
-					value: state.username,
-					oninput: function oninput(e) {
-						return actions.updateUsername(e.target.value);
-					}
-				})
-			),
-			(0, _hyperapp.h)(
-				'article',
-				{ className: 'userCard' },
-				(0, _hyperapp.h)('img', {
-					className: 'userCard__img',
-					src: state.userData.avatar_url || _defaultAvatar2.default
-				}),
-				(0, _hyperapp.h)(
-					'h3',
-					{ className: 'userCard__name' },
-					!(Object.keys(state.userData).length === 0 && state.userData.constructor === Object) ? (0, _hyperapp.h)(
-						'a',
-						{ href: state.userData.html_url },
-						state.userData.name || 'this field is empty'
-					) : 'this field is empty'
-				),
-				(0, _hyperapp.h)(
-					'h4',
-					{ className: 'userCard__location' },
-					state.userData.location || 'this field is empty'
-				)
-			)
-		),
-		(0, _hyperapp.h)(_Footer.Footer, null)
+		(0, _hyperapp.h)(_Header2.default, null),
+		(0, _hyperapp.h)(_Main2.default, { actions: actions, state: state }),
+		(0, _hyperapp.h)(_Footer2.default, null)
 	);
 };
 
 (0, _hyperapp.app)(state, actions, view, document.body);
-},{"hyperapp":6,"debounce-promise":7,"./src/app/Header":5,"./src/app/Footer":16,"./public/css/style.css":3,"./public/img/default-avatar.jpg":4}],15:[function(require,module,exports) {
+},{"hyperapp":7,"debounce-promise":8,"./src/app/Header":6,"./src/app/Footer":4,"./src/app/Main":5,"./public/css/style.css":3}],13:[function(require,module,exports) {
 
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -735,7 +783,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '51418' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '50071' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -874,5 +922,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[15,2])
+},{}]},{},[13,2])
 //# sourceMappingURL=/getting-started-with-hyperapp-and-parcel.94b8fd86.map

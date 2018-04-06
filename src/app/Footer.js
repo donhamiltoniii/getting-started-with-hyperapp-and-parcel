@@ -1,6 +1,6 @@
 import { h } from 'hyperapp'
 
-export const Footer = () => (
+const Footer = () => (
 	<footer>
 		<h6>
 			Inspired by:{' '}
@@ -10,3 +10,5 @@ export const Footer = () => (
 		</h6>
 	</footer>
 )
+
+export default Footer
